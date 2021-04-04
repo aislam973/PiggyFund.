@@ -1,0 +1,113 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiddyFund</title>
+    <link rel="stylesheet" href="quizstyle.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+    </style>   
+</head>
+<body>
+    <div class="header">
+        <div class="menubar">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html"><img src="tpig.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="start_quiz.html">Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="tests.html">Budget Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="information.html">Investment Overview </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="retirement.html">Retirement</a>
+                   </li>
+                  </ul>
+                </div>
+              </nav>
+        </div>
+    </div>
+
+    
+    
+    <form id = "piggyquizzie" name = "piggyquizzie">
+
+      <p class = "questions">What is your name?</p>
+      <input id = "textbox" type = "text" name = "first">
+
+
+      <p class = "questions">Do you currently have debt?</p>
+      <input type = "radio" id = "mc" name = "debt" value = "yes"> Yes<br>
+      <input type = "radio" id = "mc" name = "debt" value = "no"> No<br>
+      
+      <p class = "questions">Which of the following best describes your investing goals</p>
+      <input type = "radio" id = "mc" name = "investing" value = "aggressive"> I tolerate high risk investments that have high growth in value.<br>
+      <input type = "radio" id = "mc" name = "investing" value = "moderate"> I tolerate a little risk with adeqquate growth in value.<br>
+      <input type = "radio" id = "mc" name = "investing" value = "conservative"> I do not want any risk and I am okay with lower growth in value.<br>
+       
+
+
+      <input id = "button" type = "button" value = "Submit" onclick = "piggyquiz()">
+      <div id = "output">
+     
+  </form>
+  <div id = "after_submit">
+    <p id = "output"></p>
+    <p id = "message"></p>
+    
+    </div>
+
+</body>
+</html>
+
+
+<script>
+  function piggyquiz(){
+  
+  var first = document.piggyquizzie.first.value;
+  var debt = document.piggyquizzie.mc.value;
+  var investing = document.piggyquizzie.investing.value;
+   var debtoutput = ". ";
+   var investingoutput = "";
+
+  if (debt == "yes"){
+      debtoutput = debtoutput + " You need to focus your savings on clearing debt, more than 50% of your savings should go towards debt so adjust your budgeting towards that. ";
+  }
+
+  if (investing == "aggressive"){
+    investingoutput = investingoutput + "You are called an agressive investor you can do long-term investments with a diversified portfolio";
+  }
+  else if (investing == "moderate"){
+    investingoutput = investingoutput + "You are a moderate investor and can do mid-term investments (20+ years) with a 60% diversified portfolio";
+  }
+  else {
+    investingoutput = investingoutput + "You are called a conservative investor and can do short term investments (10+ years) with a 50% diversified portfolio (recommended for those closer to retirement";
+  }
+
+  
+  
+  
+  
+  document.getElementById("after_submit").style.visibility = "visible";
+  
+      document.getElementById("output").innerHTML = "Hi " + first + debtoutput + investingoutput + "!";
+      
+  }
+  </script>

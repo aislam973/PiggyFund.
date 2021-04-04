@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>PiddyFund</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tests.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+        </style>            
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--<script src="quiz.js"></script>-->
+    <!---<script src="script.js"></script>-->
+    <div class="header">
+        <div class="menubar">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html"><img src="tpig.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="start_quiz.html">Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="tests.html">Budget Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="information.html">Investment Overview </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="retirement.html">Retirement</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+              <div class="chart">
+                <canvas id="myChart"></canvas>
+              </div>
+        </div>
+    </div>
+    <div id="test"></div>
+    <h3>What is your income?</h3>
+    <input class = "textbox" id = "earnings" type = "text" name = "income">
+    <input id = "enter" type = "button" value = "Submit" onclick = "compute()">
+    <p></p>
+    <canvas id="myChart" width="400" height="400"></canvas>
+
+    <div id = "after_submit">
+    <p id = "retirementfund"></p>
+    <p id = "message"></p>
+    </div>
+    <h1> Personalize Your Budget</h1>
+    
+    <form id ="quiz" name = "quiz">
+
+    <p>What percent of money will you dedicate towards your needs?</p>
+    <input class = "textbox" type = "text" name = "needs_input" id="needs_input">
+
+    <p>What percent of money will you dedicate towards your wants?</p>
+    <input class = "textbox" type = "text" name = "wants_input" id="wants_input">
+
+    <p>What percent of money will you dedicate towards your savings?</p>
+    <input class = "textbox" type = "text" name = "savings_input" id="savings_input">
+
+    <button class = "button" type = "button" value = "Submit" id = "finish" onclick="submit_percents()">Submit</button> 
+<script>
+var ctx = document.getElementById('myChart');
+let submitButton = document.getElementById("enter");
+
+console.log(submitButton);
+
+var default_needs = 0.5
+var default_wants = 0.3
+var default_savings = 0.2
+
+
+function compute() {
+    //alert("Please navigate to the login page");
+    let income = document.getElementById("earnings").value;
+    var needs = income*default_needs;
+    var wants = income*default_wants;
+    var savings = income*default_savings;
+    document.getElementById("test").innerHTML = income;
+    console.log(income);
+    var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: [
+          'Needs',
+          'Wants',
+          'Savings'
+        ],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [needs, wants, savings],
+          backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+          ],
+          hoverOffset: 4
+        }]
+      }
+});
+}
+
+// document.getElementById("enter").addEventListener("click", compute);
+
+function submit_percents() {
+    default_needs = document.getElementById("needs_input").value;
+    default_wants = document.getElementById("wants_input").value;
+    default_savings = document.getElementById("savings_input").value;
+    console.log(default_needs);
+    console.log("default_needs");
+    compute();
+}
+// document.getElementById("finish").addEventListener("click", submit_percents);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiddyFund</title>
+    <link rel="stylesheet" href="retirement.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap');
+    </style>   
+</head>
+<body>
+    <div class="header">
+        <div class="menubar">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html"><img src="tpig.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="start_quiz.html">Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="tests.html">Budget Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="information.html">Investment Overview </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="retirement.html">Retirement</a>
+                     </li>
+                  </ul>
+                </div>
+              </nav>
+        </div>
+    </div>
+
+    <h1>Calculate your monthly retirement savings!</h1>
+    <form id = "retirementdata" name= "retirementdata">
+
+        <p>What is your annual income?</p>
+        <input id = "textbox" type = "text" name = income>
+        <p>What is your current age?</p>
+        <input id = "textbox" type = "text" name = currentage>
+        <p>At what age do you want to retire?</p>
+        <input id = "textbox" type = "text" name = retireage>
+        <p>What is your expected investment return? eg. 0.08</p>
+        <input id = "textbox" type = "text" name = returnval>
+         
+
+
+        <input id = "button" type = "button" value = "Submit" onclick = "calculate()">
+        <div id = "output">
+            
+        </div>
+       
+    </form>
+
+    <div id = "after_submit">
+    <p id = "retirementfund"></p>
+    <p id = "message"></p>
+    </div>
+    
+    
+</body>
+</html>
+<script>
+function calculate(){
+
+var income = document.retirementdata.income.value;
+var currentage = document.retirementdata.currentage.value;
+var retireage = document.retirementdata.retireage.value;
+var returnval = document.retirementdata.returnval.value;
+
+var returnoverperiod = returnval/12;
+var retirementfund = Math.round(((0.8*income*(95-retireage))*returnoverperiod)/((1+returnoverperiod)**(12*(retireage-currentage))-1));
+
+
+
+document.getElementById("after_submit").style.visibility = "visible";
+
+    document.getElementById("output").innerHTML = "Your monthly retirement savings should be " + retirementfund + "!";
+    
+}
+</script>
+</body>
+</html>
